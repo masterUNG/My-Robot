@@ -1,10 +1,12 @@
 package appewtc.masterung.myrobot;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -21,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private int anInt = 0;
     private RadioGroup radioGroup;
     private String[] strings = new String[]{
+            "servo0=",
             "servo1=",
             "servo2=",
-            "servo3=",
-            "servo4="};
+            "servo3="};
     private int index = 0;
 
     @Override
@@ -65,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 
-                seekBar.setMax(179);
+                seekBar.setMax(100);
                 anInt = i;
-                textView.setText(Integer.toString(anInt));
+                textView.setText(Integer.toString(anInt) + "%");
 
 
             }   // onProgress
@@ -87,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     }   // Main Method
+
+    public void clickReadDweet(View view) {
+        startActivity(new Intent(MainActivity.this, ReadDweet.class));
+    }
 
     private void upLoadIntegerToDweet(int anInt) {
 
