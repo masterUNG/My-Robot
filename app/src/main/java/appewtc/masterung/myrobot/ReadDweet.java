@@ -1,6 +1,7 @@
 package appewtc.masterung.myrobot;
 
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -68,6 +69,12 @@ public class ReadDweet extends AppCompatActivity {
                 String result2 = jsonObject1.getString("content");
                 Log.d("RobotV3", "result2 ==> " + result2);
 
+                JSONArray jsonArray2 = new JSONArray("[" + result2 + "]");
+                JSONObject jsonObject2 = jsonArray2.getJSONObject(0);
+                String answer = jsonObject2.getString("servo0");
+
+                textView.setText(answer);
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -83,6 +90,14 @@ public class ReadDweet extends AppCompatActivity {
 
         SynDweet synDweet = new SynDweet();
         synDweet.execute();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                synData();
+            }
+        }, 1000);
 
     }   // synData
 
