@@ -65,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 
-                anInt = i * 10;
+                seekBar.setMax(179);
+                anInt = i;
                 textView.setText(Integer.toString(anInt));
 
 
